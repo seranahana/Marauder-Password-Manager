@@ -51,7 +51,24 @@ namespace SimplePM.Forms
 
         private async void StartupForm_Load(object sender, EventArgs e)
         {
-            await CheckForUpdates();
+            try
+            {
+                await CheckForUpdates();
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
+                MessageBox.Show("Unable to check updates: Destination unreachable", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.CreateExceptionEntry(ex);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Unable to check updates: No releases found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unable to check updates: {ex.GetType()} {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.CreateExceptionEntry(ex);
+            }
         }
 
         // UI Elements Event Handlers
