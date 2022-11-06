@@ -10,7 +10,7 @@ Main features:
  
  Interface language: English.
  
- Installation: Download and run Setup.exe, further application will automaticly scan for updates on Github (shows an message if lastest release won't be found).
+ Installation: Download and run Setup.exe, further application will automaticly scan for updates on Github (shows an message if no release marked as "lastest" won't be found).
  
  To add your own themes simply create a class which inherits from Theme base class, and contains implementation of all abstract classes named Base*ControlName*Style.
  Then add a name of your new theme to AppTheme enum and add new entry into Dictionary named themes in SettingsProcessor class.
